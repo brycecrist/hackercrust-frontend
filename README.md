@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Note:
 
-This is simply Create-React-App but w/o all of the boilerplate code. You get an empty App component that contains only <main> and <p> elements.
+This is simply Create-React-App but w/o all of the boilerplate code. You get an empty App component that contains only < main > and < p > elements.
 
 ## Available Scripts
 
