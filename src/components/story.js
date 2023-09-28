@@ -1,11 +1,13 @@
 import {useEffect} from "react";
+import './styles/story.css'
+import {ellipsis} from "../utils/strings";
 
 export const Story = (story) => {
   const storyToDisplay = story.story
-  console.log(storyToDisplay.id)
   return(
     <article className="story">
-      <p className="storyTitle" key="FSAAHLFKAS">{storyToDisplay.title}</p>
+      <p className="storyTitle">{storyToDisplay.title}</p>
+      <a className="storyUrl" href={storyToDisplay.url}>({ellipsis(storyToDisplay.url)})</a>
     </article>
   )
 }

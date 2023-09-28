@@ -1,0 +1,21 @@
+.story {
+    margin: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.storyTitle, .storyUrl {
+    padding: 0.5em;
+}
+
+.storyTitle {
+}
+
+.storyUrl {
+    font-size: 0.5em;
+    color: gray;
+}

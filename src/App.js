@@ -6,6 +6,8 @@ import '@fontsource/roboto/700.css';
 import {getNumberOfStories, getTopStories} from "./api/apiUtil";
 import {useEffect, useState} from "react";
 import {Story} from "./components/story";
+import html2canvas from "html2canvas";
+import {Header} from "./components/header";
 
 const App = () => {
   const [stories, setStories] = useState([])
@@ -18,8 +20,7 @@ const App = () => {
       }
 
       const fetchStories = async (ids) => {
-        const response = await getNumberOfStories(ids, {page: 1, amount: 1})
-        return response
+        return await getNumberOfStories(ids, {page: 1, amount: 25})
       }
 
       const ids = await fetchStoryIds()
@@ -32,9 +33,10 @@ const App = () => {
 
   return (
     <main id="App">
-        <section id="Stories">
-          {storiesToDisplay}
-        </section>
+      <Header/>
+      <section id="Stories">
+        {storiesToDisplay}
+      </section>
     </main>
   )
 }
