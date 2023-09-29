@@ -12,8 +12,9 @@ import {Pagination} from "./components/pagination";
 import {CircularProgress} from "@mui/material";
 
 const App = () => {
+  const [storyIds, setStoryIds] = useState([])
   const [stories, setStories] = useState([])
-  const [filters, setFilters] = useState({page: 1, amount: 20, maxAmount: 20})
+  const [filters, setFilters] = useState({page: 1, amount: 20, amountToIncreaseBy: 20})
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const App = () => {
       }
 
       const ids = await fetchStoryIds()
+      setStoryIds(ids)
       const stories = await fetchStories(ids)
       setStories(stories)
 
@@ -38,6 +40,7 @@ const App = () => {
     })()
   }, [filters])
 
+  //setMaxStoryAmount(storyIds.length)
   const storiesToDisplay = stories.map(story => <Story key={story.id} story={story}></Story>)
 
   const afterLoad =
@@ -48,13 +51,11 @@ const App = () => {
 
   const load = <CircularProgress />
 
-  console.log(filters)
-
   return (
     <main id="App">
       <Header/>
       {loading ? load : afterLoad }
-      <Pagination filters={filters} setFilters={setFilters}/>
+      <Pagination filters={filters} setFilters={setFilters} maxStoryAmount={storyIds.length}/>
     </main>
   )
 }
