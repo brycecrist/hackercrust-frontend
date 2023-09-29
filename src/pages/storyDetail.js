@@ -13,7 +13,7 @@ export const StoryDetail = () => {
     <section id="storyDetailContainer">
       <Header></Header>
       <div id="storyContainer">
-        <div id="titleContainer">
+        <div id="textContainer">
           <div className="storyTitleContainer">
             <p className="storyTitle">{story.title}</p>
           </div>

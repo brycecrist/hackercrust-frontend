@@ -11,7 +11,7 @@
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
-#titleContainer {
+#textContainer {
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -34,4 +34,19 @@
     margin-top: 5em;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+    #storyContainer {
+        width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    }
+
+    #textContainer {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1em;
+    }
 }

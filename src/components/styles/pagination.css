@@ -7,3 +7,11 @@
     margin: 1em;
     width: 7em;
 }
+
+@media screen and (max-width: 480px) {
+    #paginationContainer button {
+        margin: 1em;
+        width: 8em;
+        height: 3em;
+    }
+}
