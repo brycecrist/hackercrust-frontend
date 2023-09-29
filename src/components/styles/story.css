@@ -21,3 +21,29 @@
     font-size: 0.5em;
     color: gray;
 }
+
+.storyDetailLink {
+    color: #333333;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 480px) {
+    .story {
+        margin: 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        background-color: white;
+        height: 8em;
+    }
+
+    .storyUrl {
+        padding: 0;
+    }
+
+    .storyTitle {
+        padding-top: 0.5em;
+    }
+}

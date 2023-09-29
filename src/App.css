@@ -13,3 +13,9 @@
 #loadingAnimation {
   margin: 10em;
 }
+
+@media screen and (max-width: 480px) {
+  #Stories {
+    width: 100%;
+  }
+}

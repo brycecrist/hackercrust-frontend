@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 export const Story = ({story}) => {
   return (
     <article className="story">
-      <Link to={`storyDetail/${story.id}`} state={{story: story}}>
+      <Link to={`storyDetail/${story.id}`} state={{story: story}} className="storyDetailLink">
         <div className="storyTitleContainer">
           <p className="storyTitle">{story.title}</p>
         </div>

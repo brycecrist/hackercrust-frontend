@@ -16,3 +16,17 @@ header p {
     margin-left: 0.5em;
     color: white;
 }
+
+#titleContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+
+@media screen and (max-width: 480px) {
+    header {
+        width: 100%;
+        position: sticky;
+        top: 0;
+    }
+}

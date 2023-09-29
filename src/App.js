@@ -10,12 +10,7 @@ import html2canvas from "html2canvas";
 import {Header} from "./components/header";
 import {Pagination} from "./components/pagination";
 import {CircularProgress} from "@mui/material";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import {Divider} from "@mui/material";
 
 const App = () => {
   const [storyIds, setStoryIds] = useState([])
