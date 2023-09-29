@@ -1,4 +1,3 @@
-import {useEffect} from "react";
 import './styles/story.css'
 import {ellipsis} from "../utils/strings";
 import {Link} from "react-router-dom";

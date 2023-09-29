@@ -6,11 +6,9 @@ import '@fontsource/roboto/700.css';
 import {getNumberOfStories, getTopStories} from "./api/apiUtil";
 import {useEffect, useState} from "react";
 import {Story} from "./components/story";
-import html2canvas from "html2canvas";
 import {Header} from "./components/header";
 import {Pagination} from "./components/pagination";
 import {CircularProgress} from "@mui/material";
-import {Divider} from "@mui/material";
 
 const App = () => {
   const [storyIds, setStoryIds] = useState([])
