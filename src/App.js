@@ -10,6 +10,12 @@ import html2canvas from "html2canvas";
 import {Header} from "./components/header";
 import {Pagination} from "./components/pagination";
 import {CircularProgress} from "@mui/material";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 const App = () => {
   const [storyIds, setStoryIds] = useState([])
@@ -49,13 +55,13 @@ const App = () => {
     </section>
 
 
-  const load = <CircularProgress />
+  const load = <CircularProgress id="loadingAnimation" />
 
   return (
     <main id="App">
       <Header/>
       {loading ? load : afterLoad }
-      <Pagination filters={filters} setFilters={setFilters} maxStoryAmount={storyIds.length}/>
+      <Pagination filters={filters} setFilters={setFilters} maxStoryAmount={storyIds.length} isLoading={loading}/>
     </main>
   )
 }

@@ -1,13 +1,17 @@
 import {useEffect} from "react";
 import './styles/story.css'
 import {ellipsis} from "../utils/strings";
+import {Link} from "react-router-dom";
 
-export const Story = (story) => {
-  const storyToDisplay = story.story
-  return(
+export const Story = ({story}) => {
+  return (
     <article className="story">
-      <p className="storyTitle">{storyToDisplay.title}</p>
-      <a className="storyUrl" href={storyToDisplay.url}>({ellipsis(storyToDisplay.url)})</a>
+      <Link to={`storyDetail/${story.id}`} state={{story: story}}>
+        <div className="storyTitleContainer">
+          <p className="storyTitle">{story.title}</p>
+        </div>
+      </Link>
+      <a className="storyUrl" href={story.url}>({ellipsis(story.url)})</a>
     </article>
   )
 }

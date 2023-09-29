@@ -2,14 +2,12 @@ import {Button} from "@mui/material";
 import './styles/pagination.css'
 import {useState} from "react";
 
-export const Pagination = ({filters, setFilters, maxStoryAmount}) => {
+export const Pagination = ({filters, setFilters, maxStoryAmount, isLoading}) => {
   const [hideNextButton, setHideNextButton] = useState(false)
   const [hidePreviousButton, setHidePreviousButton] = useState(false)
 
   const shouldHideNextButton = () => {
-    console.log("Next iteration: " + (filters.amount + filters.amountToIncreaseBy))
-    console.log("Max: " + maxStoryAmount)
-    if (filters.amount + filters.amountToIncreaseBy > maxStoryAmount) {
+    if (filters.amount + filters.amountToIncreaseBy > maxStoryAmount || isLoading) {
       if (hideNextButton !== true)
         setHideNextButton(true)
     } else {
@@ -19,7 +17,7 @@ export const Pagination = ({filters, setFilters, maxStoryAmount}) => {
   }
 
   const shouldHidePreviousButton = () => {
-    if (filters.amount - filters.amountToIncreaseBy <= 0) {
+    if (filters.amount - filters.amountToIncreaseBy <= 0 || isLoading) {
       if (hidePreviousButton !== true)
         setHidePreviousButton(true)
     } else {
