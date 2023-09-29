@@ -1,0 +1,17 @@
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 75%;
+    margin: 1em;
+    background-color: #333333;
+}
+
+header svg {
+    margin-left: 1em;
+}
+
+header p {
+    margin-left: 0.5em;
+    color: white;
+}

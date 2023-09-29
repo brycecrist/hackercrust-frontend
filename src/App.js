@@ -8,35 +8,53 @@ import {useEffect, useState} from "react";
 import {Story} from "./components/story";
 import html2canvas from "html2canvas";
 import {Header} from "./components/header";
+import {Pagination} from "./components/pagination";
+import {CircularProgress} from "@mui/material";
 
 const App = () => {
   const [stories, setStories] = useState([])
+  const [filters, setFilters] = useState({page: 1, amount: 20, maxAmount: 20})
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     (async () => {
+      console.log("Loading Data")
+      setLoading(true)
       const fetchStoryIds = async () => {
         const response = await getTopStories()
         return await response.json()
       }
 
       const fetchStories = async (ids) => {
-        return await getNumberOfStories(ids, {page: 1, amount: 25})
+        return await getNumberOfStories(ids, filters)
       }
 
       const ids = await fetchStoryIds()
       const stories = await fetchStories(ids)
       setStories(stories)
+
+      setLoading(false)
+      console.log("Data has been loaded successfully")
     })()
-  }, [])
+  }, [filters])
 
   const storiesToDisplay = stories.map(story => <Story key={story.id} story={story}></Story>)
+
+  const afterLoad =
+    <section id="Stories">
+      {storiesToDisplay}
+    </section>
+
+
+  const load = <CircularProgress />
+
+  console.log(filters)
 
   return (
     <main id="App">
       <Header/>
-      <section id="Stories">
-        {storiesToDisplay}
-      </section>
+      {loading ? load : afterLoad }
+      <Pagination filters={filters} setFilters={setFilters}/>
     </main>
   )
 }

@@ -4,8 +4,9 @@
     flex-direction: row;
     justify-content: left;
     align-items: center;
-    width: 100%;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: white;
+    height: 3em;
 }
 
 .storyTitle, .storyUrl {
@@ -13,6 +14,7 @@
 }
 
 .storyTitle {
+    padding-left: 1em;
 }
 
 .storyUrl {

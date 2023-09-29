@@ -15,8 +15,8 @@ export const getStory = async (id) => await request(`item/${id}`)
 export const getNumberOfStories = async (ids, filters) => {
     let stories = []
 
-    let minStoriesToGet = (filters.page - 1) * filters.amount
-    const maxStoriesToGet = filters.page * filters.amount
+    let minStoriesToGet = (filters.page - 1) * filters.maxAmount
+    const maxStoriesToGet = filters.page * filters.maxAmount
 
     for (let i = minStoriesToGet; i < maxStoriesToGet; i++) {
         const story = await getStory(ids[i])

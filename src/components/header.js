@@ -1,8 +1,10 @@
 import HomeIcon from '@mui/icons-material/Home'
+import './styles/header.css'
+
 export const Header = () => {
   return (
     <header>
-      <HomeIcon/>
+      <HomeIcon style={{ fontSize: "medium", color: "white" }}/>
       <p id="headerTitle">CrustyNews</p>
     </header>
   )
