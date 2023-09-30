@@ -9,6 +9,8 @@
 #storyContainer {
     width: 75%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    display: flex;
+    flex-direction: column;
 }
 
 #textContainer {
@@ -36,6 +38,29 @@
     align-items: center;
 }
 
+.storyDetailTitleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+}
+
+.storyDetailTitle {
+    margin-top: 1em;
+    color: #333333;
+    text-decoration: none;
+}
+
+.storyDetailUrl {
+    font-size: 0.75em;
+    margin-bottom: 1em;
+}
+
+#backButton {
+    margin-top: 1em;
+}
+
 @media screen and (max-width: 480px) {
     #storyContainer {
         width: 100%;
@@ -48,5 +73,15 @@
         flex-direction: column;
         align-items: center;
         margin-bottom: 1em;
+    }
+
+    .storyDetailTitle {
+        color: #333333;
+        text-decoration: none;
+        margin-top: 1em;
+    }
+
+    .storyDetailUrl {
+        font-size: 0.75em;
     }
 }
