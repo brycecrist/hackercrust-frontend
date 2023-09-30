@@ -10,6 +10,7 @@ export const Story = ({story}) => {
           <p className="storyTitle">{story.title}</p>
         </div>
       </Link>
+      <div id="divider"></div>
       <a className="storyUrl" href={story.url}>({ellipsis(story.url)})</a>
     </article>
   )

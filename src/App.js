@@ -9,6 +9,7 @@ import {Story} from "./components/story";
 import {Header} from "./components/header";
 import {Pagination} from "./components/pagination";
 import {CircularProgress} from "@mui/material";
+import packageJson from "../package.json"
 
 const App = () => {
   const [storyIds, setStoryIds] = useState([])
@@ -53,6 +54,13 @@ const App = () => {
   return (
     <main id="App">
       <Header/>
+      <div id="statement">
+        <sub>
+          A redesign of the Hackernews client. I love the site, but dislike the interface, so I've opted to make my own.
+          Forgive me for any bugs and/or the general lack of content.
+        </sub>
+        <sub id="version">Bruce Crust | 2023 | v{packageJson.version}</sub>
+      </div>
       {loading ? load : afterLoad }
       <Pagination filters={filters} setFilters={setFilters} maxStoryAmount={storyIds.length} isLoading={loading}/>
     </main>
@@ -60,3 +68,4 @@ const App = () => {
 }
 
 export default App
+

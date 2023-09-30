@@ -7,7 +7,7 @@ export const Header = () => {
     <header>
       <Link to="/" id="titleContainer">
         <HomeIcon style={{ fontSize: "medium", color: "white" }}/>
-        <p id="headerTitle">CrustyNews</p>
+        <p id="headerTitle">HackerCrust</p>
       </Link>
     </header>
   )
