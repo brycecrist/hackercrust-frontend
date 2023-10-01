@@ -27,29 +27,8 @@ export const Pagination = ({filters, setFilters, maxStoryAmount, isLoading}) => 
     }
   }
 
-  const handleNextButton = (e) => {
-    shouldHideNextButton()
-    setFilters({
-      page: filters.page + 1,
-      amount: filters.amount + filters.amountToIncreaseBy,
-      amountToIncreaseBy: filters.amountToIncreaseBy
-    })
-  }
-
-  const handlePreviousButton = (e) => {
-    console.log("Previous iteration: " + (filters.amount - filters.amountToIncreaseBy))
-    shouldHidePreviousButton()
-    setFilters({
-      page: filters.page - 1,
-      amount: filters.amount - filters.amountToIncreaseBy,
-      amountToIncreaseBy: filters.amountToIncreaseBy
-    })
-  }
-
   shouldHidePreviousButton()
   shouldHideNextButton()
-
-  console.log(filters.page)
 
   const nextState = {
     page: filters.page + 1,

@@ -58,17 +58,19 @@
     align-items: center;
 }
 
+.storyHeadline {
+    display: flex;
+    flex-direction: row;
+}
+
 .storyTitle {
-    margin-left: 1em;
     text-align: left;
 }
 
 .storyUrl {
     font-size: 0.6em;
     color: gray;
-    width: 15%;
     margin-bottom: 1em;
-    margin-left: 1.5em;
 }
 
 .storyDetailLink {
@@ -81,9 +83,17 @@
     text-align: left;
 }
 
+.thumbnailContainer {
+    min-width: 110px;
+    min-height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .storyIndex {
     margin-left: 0.5em;
-    margin-right: 0.5em;
     font-size: 0.75em;
     color: gray;
 }
@@ -119,9 +129,7 @@
 
     .storyUrl {
         font-size: 0.75em;
-        margin-top: -1em;
         white-space: nowrap;
-        width: 35%;
     }
 
     .storyTitle {

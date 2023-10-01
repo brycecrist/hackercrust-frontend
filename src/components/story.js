@@ -23,17 +23,13 @@ export const Story = ({story, filters, index}) => {
   let image
   const hasImage = storyImage && storyImage.images && storyImage.images[0]
 
-  if (!story.url){
-    console.log('Got it')
-    console.log(story)
-  }
-
   if (hasImage) {
     const imageFile = storyImage.images[0]
     const imageCameFromLiveSite = imageFile.charset
   }
-    //(storyImage.images[0]
-  if (storyImage && storyImage.images)
+
+  const hasStoryImage = storyImage && storyImage.images
+  if (hasStoryImage)
     image = <img className="storyImage" alt={story.title} src={storyImage.images[0]} />
   else
     image = <div className="noStoryImage"><p>Preview unavailable</p></div>
@@ -43,16 +39,21 @@ export const Story = ({story, filters, index}) => {
   return (
     <article className="story">
       <div className="storyContainer">
-        <Link to={`/stories/${filters.page}/storyDetail/${story.id}`} state={{story: story}} className="storyDetailLink">
-          <div className="storyTitleContainer">
-            <p className="storyIndex">{indexToDisplay + 1}.</p>
+        <div className="storyHeadline">
+          <p className="storyIndex">{indexToDisplay + 1}.</p>
+          <div className="thumbnailContainer">
             {image}
-            <div className="storyHeaderContainer">
-              <p className="storyTitle">{story.title}</p>
-            </div>
+            <a className="storyUrl" href={story.url} hidden={!story.url}>({ story.url ? removeHttp(ellipsis(story.url)) : ''})</a>
           </div>
-        </Link>
-        <a className="storyUrl" href={story.url} hidden={!story.url}>({ story.url ? removeHttp(ellipsis(story.url)) : ''})</a>
+          <Link to={`/stories/${filters.page}/storyDetail/${story.id}`}
+                state={{story: story, filters: filters, image: hasStoryImage ? storyImage.images[0] : ""}} className="storyDetailLink">
+            <div className="storyTitleContainer">
+              <div className="storyHeaderContainer">
+                <p className="storyTitle">{story.title}</p>
+              </div>
+            </div>
+          </Link>
+        </div>
         <Divider className="horizontalDivider" style={{width: '100%'}} role="presentation"></Divider>
         <div className="storyInformationContainer">
           <div className="storyAuthorContainer">
