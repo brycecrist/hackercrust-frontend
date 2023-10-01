@@ -19,7 +19,6 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      console.log("Loading Data")
       setLoading(true)
       const fetchStoryIds = async () => {
         const response = await getTopStories()
@@ -36,12 +35,11 @@ const App = () => {
       setStories(stories)
 
       setLoading(false)
-      console.log("Data has been loaded successfully")
     })()
   }, [filters])
 
-  //setMaxStoryAmount(storyIds.length)
-  const storiesToDisplay = stories.map(story => <Story key={story.id} story={story}></Story>)
+  const storiesToDisplay = stories.map(
+    (story, index) => <Story key={story.id} story={story} filters={filters} index={index}></Story>)
 
   const afterLoad =
     <section id="Stories">

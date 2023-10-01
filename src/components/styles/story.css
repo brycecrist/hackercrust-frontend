@@ -1,20 +1,59 @@
 .story {
-    margin: 1em;
+    margin: 0.25em;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: left;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    background-color: white;
-    height: 3em;
+    background-color: #FAFAFA;
 }
 
-.storyTitle, .storyUrl {
-    padding: 0.5em;
+.storyImage, .noStoryImage {
+    height: 75px;
+    width: 75px;
+    margin: 0.25em;
+}
+
+.noStoryImage {
+    border: 1px solid gray;
+    text-align: center;
+}
+
+.storyContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.storyInformationContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.storyInformationContainer p, .storyInformationContainer a {
+    margin: 0.25em;
+    font-size: 0.75em;
+    color: gray;
+}
+
+.comments {
+
+}
+
+.paragraphDivider {
+    color: gray;
+    opacity: 50%;
+}
+
+.points {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .storyTitle {
-    padding-left: 1em;
+    margin-left: 1em;
     text-align: left;
 }
 
@@ -26,23 +65,26 @@
 }
 
 .storyDetailLink {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
     color: #333333;
     text-decoration: none;
-    width: 90%;
+    width: 100%;
     text-align: left;
 }
 
-#verticalDivider {
-    width: 1px;
-    height: 100%;
-    background-color: gray;
-    margin-right: 1em;
+.storyIndex {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    font-size: 0.75em;
+    color: gray;
 }
 
-@media screen and (min-width: 480px) {
-    #horizontalDivider {
-        display: none;
-    }
+.storyTitleContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 }
 
 @media screen and (max-width: 480px) {

@@ -12,7 +12,7 @@ export const StoryDetail = () => {
   return (
     <section id="storyDetailContainer">
       <Header></Header>
-      <div id="storyContainer">
+      <div id="subDetailContainer">
         <div id="textContainer">
           <Link to="/">
             <ArrowBackIcon id="backButton" />
