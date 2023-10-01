@@ -50,8 +50,8 @@ export const Pagination = ({filters, setFilters, maxStoryAmount, isLoading}) => 
 
   return(
     <div id="paginationContainer">
-      <Button variant="contained" id="previousButton" onClick={handlePreviousButton} disabled={hidePreviousButton}>Previous</Button>
-      <Button variant="contained" id="nextButton" onClick={handleNextButton} disabled={hideNextButton}>Next</Button>
+      <Button variant="outlined" color="primary" id="previousButton" onClick={handlePreviousButton} disabled={hidePreviousButton}>Previous</Button>
+      <Button variant="outlined" color="primary" id="nextButton" onClick={handleNextButton} disabled={hideNextButton}>Next</Button>
     </div>
   )
 }

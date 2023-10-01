@@ -11,6 +11,7 @@
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     display: flex;
     flex-direction: column;
+    background-color: #FAFAFA;
 }
 
 #textContainer {
@@ -70,15 +71,25 @@
     #textContainer {
         display: flex;
         justify-content: center;
-        flex-direction: column;
         align-items: center;
-        margin-bottom: 1em;
+        margin-top: 1em;
+        min-width: 100%;
+    }
+
+    #textContainer a {
+        margin-right: 1em;
+        min-width: 10%;
     }
 
     .storyDetailTitle {
         color: #333333;
         text-decoration: none;
         margin-top: 1em;
+    }
+
+    .storyDetailTitleContainer {
+        margin-left: -1em;
+        max-width: 80%;
     }
 
     .storyDetailUrl {
