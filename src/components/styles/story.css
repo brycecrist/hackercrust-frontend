@@ -17,6 +17,11 @@
 .noStoryImage {
     border: 1px solid gray;
     text-align: center;
+    min-width: 75px;
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .storyContainer {
@@ -37,8 +42,9 @@
     color: gray;
 }
 
-.comments {
-
+.storyHeaderContainer {
+    display: flex;
+    flex-direction: column;
 }
 
 .paragraphDivider {
@@ -60,8 +66,8 @@
 .storyUrl {
     font-size: 0.6em;
     color: gray;
-    margin-right: 1em;
-    width: 17em;
+    margin-left: 1rem;
+    margin-top: -0.5rem;
 }
 
 .storyDetailLink {
@@ -87,6 +93,13 @@
     flex-direction: row;
 }
 
+.storyAuthorContainer div {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
 @media screen and (max-width: 480px) {
     .story {
         margin: 1em;
@@ -96,20 +109,44 @@
         align-items: center;
         box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
         background-color: white;
-        height: 8em;
+        min-height: 9em;
+        max-height: 9em;
     }
 
-    #verticalDivider {
-        display: none;
+    .storyDetailLink {
+        min-height: 7em;
+        max-height: 7em;
     }
 
     .storyUrl {
-        padding: 0;
-        margin-top: 0.5em;
         font-size: 0.75em;
+        margin-bottom: 0.25em;
     }
 
     .storyTitle {
         padding-top: 0.5em;
+    }
+
+    .noStoryImage p {
+        font-size: 0.5em;
+    }
+
+    .storyInformationContainer {
+        display: flex;
+        justify-content: left;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .storyAuthorContainer {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
+        margin-top: 0.25em;
+    }
+
+    .storyLinkContainer {
+        margin-top: 0.75em;
     }
 }

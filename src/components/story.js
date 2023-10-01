@@ -35,16 +35,19 @@ export const Story = ({story, filters, index}) => {
           <div className="storyTitleContainer">
             <p className="storyIndex">{indexToDisplay + 1}.</p>
             {image}
-            <p className="storyTitle">{story.title}</p>
+            <div className="storyHeaderContainer">
+              <p className="storyTitle">{story.title}</p>
+              <a className="storyUrl" href={story.url}>({ellipsis(story.url)})</a>
+            </div>
           </div>
         </Link>
-        <Divider id="horizontalDivider" style={{width: '100%'}} role="presentation"></Divider>
+        <Divider className="horizontalDivider" style={{width: '100%'}} role="presentation"></Divider>
         <div className="storyInformationContainer">
-          <p className="points"><StraightIcon style={{color: "orange", fontSize: "16px"}}/>{story.score} points</p>
-          <p className="author">by {story.by}</p>
-          <p className="paragraphDivider">|</p>
-          <Link to={`storyDetail/${story.id}`} state={{story: story}} className="comments">Comments: {story.descendants}</Link>
-          <a className="storyUrl" href={story.url}>({ellipsis(story.url)})</a>
+          <div className="storyAuthorContainer">
+            <p className="points"><StraightIcon style={{color: "orange", fontSize: "16px"}}/>{story.score} points</p>
+            <p className="author">by {story.by}</p>
+            <Link to={`storyDetail/${story.id}`} state={{story: story}} className="comments">Comments: {story.descendants}</Link>
+          </div>
         </div>
       </div>
     </article>
