@@ -66,8 +66,9 @@
 .storyUrl {
     font-size: 0.6em;
     color: gray;
-    margin-left: 1rem;
-    margin-top: -0.5rem;
+    width: 15%;
+    margin-bottom: 1em;
+    margin-left: 1.5em;
 }
 
 .storyDetailLink {
@@ -107,8 +108,8 @@
         align-items: center;
         box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
         background-color: white;
-        min-height: 9em;
-        max-height: 9em;
+        min-height: 10em;
+        max-height: 10em;
     }
 
     .storyDetailLink {
@@ -118,7 +119,9 @@
 
     .storyUrl {
         font-size: 0.75em;
-        margin-bottom: 0.25em;
+        margin-top: -1em;
+        white-space: nowrap;
+        width: 35%;
     }
 
     .storyTitle {

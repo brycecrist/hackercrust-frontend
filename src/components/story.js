@@ -1,5 +1,5 @@
 import './styles/story.css'
-import {ellipsis} from "../utils/strings";
+import {ellipsis, removeHttp} from "../utils/strings";
 import {Link} from "react-router-dom";
 import {Divider} from "@mui/material";
 import StraightIcon from '@mui/icons-material/Straight';
@@ -18,9 +18,16 @@ export const Story = ({story, filters, index}) => {
         console.log(`Caught exception while fetching website preview: '${e}'`)
       }
     })();
-  })
+  }, [])
 
-  let image = null
+  let image
+  const hasImage = storyImage && storyImage.images && storyImage.images[0]
+
+  if (hasImage) {
+    const imageFile = storyImage.images[0]
+    const imageCameFromLiveSite = imageFile.charset
+  }
+    //(storyImage.images[0]
   if (storyImage && storyImage.images)
     image = <img className="storyImage" alt={story.title} src={storyImage.images[0]} />
   else
@@ -40,7 +47,7 @@ export const Story = ({story, filters, index}) => {
             </div>
           </div>
         </Link>
-        <a className="storyUrl" href={story.url}>({ellipsis(story.url)})</a>
+        <a className="storyUrl" href={story.url}>({removeHttp(ellipsis(story.url))})</a>
         <Divider className="horizontalDivider" style={{width: '100%'}} role="presentation"></Divider>
         <div className="storyInformationContainer">
           <div className="storyAuthorContainer">
