@@ -18,7 +18,7 @@ export const Story = ({story, filters, index}) => {
         console.log(`Caught exception while fetching website preview: '${e}'`)
       }
     })();
-  }, [])
+  })
 
   let image = null
   if (storyImage && storyImage.images)
@@ -37,10 +37,10 @@ export const Story = ({story, filters, index}) => {
             {image}
             <div className="storyHeaderContainer">
               <p className="storyTitle">{story.title}</p>
-              <a className="storyUrl" href={story.url}>({ellipsis(story.url)})</a>
             </div>
           </div>
         </Link>
+        <a className="storyUrl" href={story.url}>({ellipsis(story.url)})</a>
         <Divider className="horizontalDivider" style={{width: '100%'}} role="presentation"></Divider>
         <div className="storyInformationContainer">
           <div className="storyAuthorContainer">
