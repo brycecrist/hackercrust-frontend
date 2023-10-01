@@ -12,18 +12,18 @@ export const StoryDetail = () => {
 
   let thumbnail
   if (image)
-    thumbnail = <img className="storyImage" alt={story.title} src={image} />
+    thumbnail = <img className="storyDetailImage" alt={story.title} src={image} />
   else
-    thumbnail = <div className="noStoryImage"><p>Preview unavailable</p></div>
+    thumbnail = <div className="noStoryDetailImage"><p>Preview unavailable</p></div>
   return (
     <section id="storyDetailContainer">
       <Header></Header>
       <div id="subDetailContainer">
+        {thumbnail}
         <div id="textContainer">
           <Link to={`/stories/${filters.page}`}>
             <ArrowBackIcon id="backButton" />
           </Link>
-          {thumbnail}
           <div className="storyDetailTitleContainer">
             <a className="storyDetailTitle" href={story.url}>{story.title}</a>
             <a className="storyDetailUrl" href={story.url}>({ellipsis(story.url)})</a>

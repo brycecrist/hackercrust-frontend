@@ -3,7 +3,6 @@ header {
     flex-direction: row;
     align-items: center;
     width: 75%;
-    margin-top: 1em;
     margin-bottom: -0.5em;
     background-color: #333333;
 }
