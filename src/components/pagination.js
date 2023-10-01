@@ -1,6 +1,7 @@
 import {Button} from "@mui/material";
 import './styles/pagination.css'
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 export const Pagination = ({filters, setFilters, maxStoryAmount, isLoading}) => {
   const [hideNextButton, setHideNextButton] = useState(false)
@@ -48,10 +49,28 @@ export const Pagination = ({filters, setFilters, maxStoryAmount, isLoading}) => 
   shouldHidePreviousButton()
   shouldHideNextButton()
 
+  console.log(filters.page)
+
+  const nextState = {
+    page: filters.page + 1,
+    amount: filters.amount + filters.amountToIncreaseBy,
+    amountToIncreaseBy: filters.amountToIncreaseBy
+  }
+
+  const previousState = {
+    page: filters.page - 1,
+    amount: filters.amount - filters.amountToIncreaseBy,
+    amountToIncreaseBy: filters.amountToIncreaseBy
+  }
+
   return(
     <div id="paginationContainer">
-      <Button variant="outlined" color="primary" id="previousButton" onClick={handlePreviousButton} disabled={hidePreviousButton}>Previous</Button>
-      <Button variant="outlined" color="primary" id="nextButton" onClick={handleNextButton} disabled={hideNextButton}>Next</Button>
+      <Link to={`/stories/${previousState.page}`} state={{newFilters: previousState}} className="storyDetailLink">
+        <Button variant="outlined" color="primary" id="previousButton" disabled={hidePreviousButton}>Previous</Button>
+      </Link>
+      <Link to={`/stories/${nextState.page}`} state={{newFilters: nextState}} className="storyDetailLink">
+        <Button variant="outlined" color="primary" id="nextButton" disabled={hideNextButton}>Next</Button>
+      </Link>
     </div>
   )
 }

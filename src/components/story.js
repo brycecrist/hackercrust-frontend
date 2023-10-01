@@ -23,6 +23,11 @@ export const Story = ({story, filters, index}) => {
   let image
   const hasImage = storyImage && storyImage.images && storyImage.images[0]
 
+  if (!story.url){
+    console.log('Got it')
+    console.log(story)
+  }
+
   if (hasImage) {
     const imageFile = storyImage.images[0]
     const imageCameFromLiveSite = imageFile.charset
@@ -37,8 +42,8 @@ export const Story = ({story, filters, index}) => {
 
   return (
     <article className="story">
-      <div class="storyContainer">
-        <Link to={`storyDetail/${story.id}`} state={{story: story}} className="storyDetailLink">
+      <div className="storyContainer">
+        <Link to={`/stories/${filters.page}/storyDetail/${story.id}`} state={{story: story}} className="storyDetailLink">
           <div className="storyTitleContainer">
             <p className="storyIndex">{indexToDisplay + 1}.</p>
             {image}
@@ -47,7 +52,7 @@ export const Story = ({story, filters, index}) => {
             </div>
           </div>
         </Link>
-        <a className="storyUrl" href={story.url}>({removeHttp(ellipsis(story.url))})</a>
+        <a className="storyUrl" href={story.url} hidden={!story.url}>({ story.url ? removeHttp(ellipsis(story.url)) : ''})</a>
         <Divider className="horizontalDivider" style={{width: '100%'}} role="presentation"></Divider>
         <div className="storyInformationContainer">
           <div className="storyAuthorContainer">

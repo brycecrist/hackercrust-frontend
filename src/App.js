@@ -10,12 +10,20 @@ import {Header} from "./components/header";
 import {Pagination} from "./components/pagination";
 import {CircularProgress} from "@mui/material";
 import packageJson from "../package.json"
+import {useLocation} from "react-router-dom";
 
 const App = () => {
   const [storyIds, setStoryIds] = useState([])
   const [stories, setStories] = useState([])
   const [filters, setFilters] = useState({page: 1, amount: 20, amountToIncreaseBy: 20})
   const [loading, setLoading] = useState(false)
+
+  const location = useLocation()
+  if (location.state) {
+    const {newFilters} = location.state
+    if (filters !== newFilters)
+      setFilters(newFilters)
+  }
 
   useEffect(() => {
     (async () => {

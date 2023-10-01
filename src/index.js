@@ -2,17 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
 import {StoryDetail} from "./pages/storyDetail";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/stories/1",
     element: <App />
   },
   {
-    path: "storyDetail/:storyId",
+    path: "/stories/:pageNumber",
+    element: <App />
+  },
+  {
+    path: "/stories/:pageNumber/storyDetail/:storyId",
     element: <StoryDetail />
+  },
+  {
+    path: "/",
+    element: <Navigate to="/stories/1" replace />
   }
 ])
 

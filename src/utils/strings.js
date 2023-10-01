@@ -6,6 +6,8 @@ export const ellipsis = (text, length=25) => {
 }
 
 export const removeHttp = (text) => {
+
+
   let formattedText
   if (text.includes("https"))
     formattedText = text.substring(8, text.length)
