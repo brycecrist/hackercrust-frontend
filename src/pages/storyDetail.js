@@ -15,6 +15,8 @@ export const StoryDetail = () => {
     thumbnail = <img className="storyDetailImage" alt={story.title} src={image} />
   else
     thumbnail = <div className="noStoryDetailImage"><p>Preview unavailable</p></div>
+
+  // Comment for deployment
   return (
     <section id="storyDetailContainer">
       <Header></Header>
