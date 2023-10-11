@@ -34,7 +34,7 @@ export const Story = ({story, filters, index}) => {
   else
     image = <div className="noStoryImage"><p>Preview unavailable</p></div>
 
-  const indexToDisplay = filters.page > 1 ? index + filters.amount - filters.amountToIncreaseBy : index
+  const indexToDisplay = filters.page > 1 ? index + filters.amount - filters.increaseBy : index
 
   return (
     <article className="story">
