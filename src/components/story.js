@@ -45,6 +45,7 @@ export const Story = ({story, filters, index}) => {
             {image}
             <a className="storyUrl" href={story.url} hidden={!story.url}>({ story.url ? removeHttp(ellipsis(story.url)) : ''})</a>
           </div>
+          <Divider orientation="vertical" flexItem />
           <Link to={`/stories/${filters.page}/storyDetail/${story.id}`}
                 state={{story: story, filters: filters, image: hasStoryImage ? storyImage.images[0] : ""}} className="storyDetailLink">
             <div className="storyTitleContainer">
