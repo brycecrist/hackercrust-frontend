@@ -7,7 +7,7 @@
 }
 
 #Stories {
-  width: 75%;
+  width: 60%;
 }
 
 #loadingAnimation {
@@ -15,7 +15,6 @@
 }
 
 #statement {
-  margin-top: 1em;
   display: flex;
   flex-direction: column;
   width: 75%;

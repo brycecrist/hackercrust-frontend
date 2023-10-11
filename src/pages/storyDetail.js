@@ -21,7 +21,6 @@ export const StoryDetail = () => {
     <section id="storyDetailContainer">
       <Header></Header>
       <div id="subDetailContainer">
-        {thumbnail}
         <div id="textContainer">
           <Link to={`/stories/${filters.page}`}>
             <ArrowBackIcon id="backButton" />
@@ -31,6 +30,7 @@ export const StoryDetail = () => {
             <a className="storyDetailUrl" href={story.url}>({ellipsis(story.url)})</a>
           </div>
         </div>
+        {thumbnail}
         <div id="commentsContainer">
           <Divider id="commentsDivider">Comments</Divider>
           <div id="commentsSection">

@@ -2,9 +2,9 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 75%;
-    margin-bottom: -0.5em;
+    width: 60%;
     background-color: #333333;
+    margin-bottom: 1rem;
 }
 
 header svg {
