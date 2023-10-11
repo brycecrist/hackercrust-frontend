@@ -15,7 +15,7 @@ import {useLocation} from "react-router-dom";
 const App = () => {
   const [storyIds, setStoryIds] = useState([])
   const [stories, setStories] = useState([])
-  const [filters, setFilters] = useState({page: 1, amount: 20, amountToIncreaseBy: 20})
+  const [filters, setFilters] = useState({page: 1, amount: 20, increaseBy: 20})
   const [loading, setLoading] = useState(false)
 
   const location = useLocation()
@@ -28,32 +28,29 @@ const App = () => {
   useEffect(() => {
     (async () => {
       setLoading(true)
-      const fetchStoryIds = async () => {
-        const response = await getTopStories()
-        return await response.json()
-      }
 
-      const fetchStories = async (ids) => {
-        return await getNumberOfStories(ids, filters)
-      }
+      const fetchStoryIds = async () => await getTopStories()
+      const fetchStories = async () => await getNumberOfStories(filters)
 
-      const ids = await fetchStoryIds()
-      setStoryIds(ids)
-      const stories = await fetchStories(ids)
-      setStories(stories)
+      const storyIds = await fetchStoryIds()
+      if (storyIds)
+        setStoryIds(storyIds)
+      const stories = await fetchStories()
+      if (stories)
+        setStories(stories)
 
       setLoading(false)
     })()
   }, [filters])
 
-  const storiesToDisplay = stories.map(
-    (story, index) => <Story key={story.id} story={story} filters={filters} index={index}></Story>)
+  // If no stories due to server being down, give empty list
+  const storiesToDisplay = stories ? stories.map(
+    (story, index) => <Story key={story.id} story={story} filters={filters} index={index}></Story>) : []
 
   const afterLoad =
     <section id="Stories">
       {storiesToDisplay}
     </section>
-
 
   const load = <CircularProgress id="loadingAnimation" />
 

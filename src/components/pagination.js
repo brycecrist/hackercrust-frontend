@@ -8,7 +8,7 @@ export const Pagination = ({filters, setFilters, maxStoryAmount, isLoading}) => 
   const [hidePreviousButton, setHidePreviousButton] = useState(false)
 
   const shouldHideNextButton = () => {
-    if (filters.amount + filters.amountToIncreaseBy > maxStoryAmount || isLoading) {
+    if (filters.amount + filters.increaseBy > maxStoryAmount || isLoading) {
       if (hideNextButton !== true)
         setHideNextButton(true)
     } else {
@@ -18,7 +18,7 @@ export const Pagination = ({filters, setFilters, maxStoryAmount, isLoading}) => 
   }
 
   const shouldHidePreviousButton = () => {
-    if (filters.amount - filters.amountToIncreaseBy <= 0 || isLoading) {
+    if (filters.amount - filters.increaseBy <= 0 || isLoading) {
       if (hidePreviousButton !== true)
         setHidePreviousButton(true)
     } else {
@@ -32,14 +32,14 @@ export const Pagination = ({filters, setFilters, maxStoryAmount, isLoading}) => 
 
   const nextState = {
     page: filters.page + 1,
-    amount: filters.amount + filters.amountToIncreaseBy,
-    amountToIncreaseBy: filters.amountToIncreaseBy
+    amount: filters.amount + filters.increaseBy,
+    increaseBy: filters.increaseBy
   }
 
   const previousState = {
     page: filters.page - 1,
-    amount: filters.amount - filters.amountToIncreaseBy,
-    amountToIncreaseBy: filters.amountToIncreaseBy
+    amount: filters.amount - filters.increaseBy,
+    increaseBy: filters.increaseBy
   }
 
   return(
