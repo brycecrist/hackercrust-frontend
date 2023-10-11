@@ -1,9 +1,10 @@
 const hackerNewsUrl = "https://hacker-news.firebaseio.com/v0"
-const baseUrl = "http://localhost:5000"
+const localUrl = "http://localhost:5000"
+const herokuUrl = "https://hackercrust-backend-74d20cb660dc.herokuapp.com"
 
 const request = async (url, method="GET", body) => {
   try {
-    const request = await fetch(`${baseUrl}/${url}`, {
+    const request = await fetch(`${herokuUrl}/${url}`, {
       method: method,
       body: body
     })
