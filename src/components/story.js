@@ -32,7 +32,7 @@ export const Story = ({story, filters, index}) => {
   if (hasStoryImage)
     image = <img className="storyImage" alt={story.title} src={storyImage.images[0]} />
   else
-    image = <div className="noStoryImage"><p>Preview unavailable</p></div>
+    image = <div className="noImage"><p></p></div>
 
   const indexToDisplay = filters.page > 1 ? index + filters.amount - filters.increaseBy : index
 
