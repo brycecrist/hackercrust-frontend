@@ -5,10 +5,29 @@ import {Divider} from "@mui/material";
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import './styles/storyDetail.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {useEffect, useState} from "react";
+import {getComments} from "../api/apiUtil";
 
 export const StoryDetail = () => {
   const location = useLocation()
   const {story, filters, image} = location.state
+  const [comments, setComments] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      const fetchComments = async () => {
+        console.log("Fetching comments...")
+        if (story.kids && story.kids.length > 0) {
+          const commentsResponse = await getComments(story.kids)
+          console.log(commentsResponse)
+        }
+      }
+
+      await fetchComments()
+    })()
+  }, [])
+
+  console.log(comments)
 
   let thumbnail
   if (image)
