@@ -60,7 +60,9 @@ export const Story = ({story, filters, index}) => {
           <div className="storyAuthorContainer">
             <p className="points"><StraightIcon style={{color: "orange", fontSize: "16px"}}/>{story.score} points</p>
             <p className="author">by {story.by}</p>
-            <Link to={`storyDetail/${story.id}`} state={{story: story}} className="comments">Comments: {story.descendants}</Link>
+            <Link to={`/stories/${filters.page}/storyDetail/${story.id}`}
+                  state={{story: story, filters: filters, image: hasStoryImage ? storyImage.images[0] : ""}} className="comments">
+                  Comments: {story.descendants}</Link>
           </div>
         </div>
       </div>
