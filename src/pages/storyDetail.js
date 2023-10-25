@@ -1,14 +1,49 @@
 import {Link, useLocation} from "react-router-dom";
 import {ellipsis} from "../utils/strings";
 import {Header} from "../components/header";
-import {Divider} from "@mui/material";
+import {CircularProgress, Divider} from "@mui/material";
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import './styles/storyDetail.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {useEffect, useState} from "react";
+import {getComments} from "../api/apiUtil";
+import {Comment} from "../components/comment";
 
 export const StoryDetail = () => {
   const location = useLocation()
   const {story, filters, image} = location.state
+  const [comments, setComments] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true)
+
+      const fetchComments = async () => {
+        console.log("Fetching comments...")
+        if (story.kids && story.kids.length > 0) {
+          const commentsResponse = await getComments(story.kids)
+          setComments(commentsResponse.comments)
+        }
+      }
+
+      await fetchComments()
+      setLoading(false)
+    })()
+  }, [])
+
+
+  const commentsToDisplay = comments ? comments.map(
+    (comment) => {
+      if (comment.text)
+        return <Comment key={comment.id} comment={comment}></Comment>
+    }) : []
+
+  const afterLoad = <div id="commentsSection">
+                      {commentsToDisplay}
+                    </div>
+
+  const load = <CircularProgress id="loadingAnimation" />
 
   let thumbnail
   if (image)
@@ -21,7 +56,6 @@ export const StoryDetail = () => {
     <section id="storyDetailContainer">
       <Header></Header>
       <div id="subDetailContainer">
-        {thumbnail}
         <div id="textContainer">
           <Link to={`/stories/${filters.page}`}>
             <ArrowBackIcon id="backButton" />
@@ -31,12 +65,10 @@ export const StoryDetail = () => {
             <a className="storyDetailUrl" href={story.url}>({ellipsis(story.url)})</a>
           </div>
         </div>
+        {thumbnail}
         <div id="commentsContainer">
           <Divider id="commentsDivider">Comments</Divider>
-          <div id="commentsSection">
-            <EngineeringIcon fontSize="large"/>
-            Under Construction
-          </div>
+          {loading ? load : afterLoad }
         </div>
       </div>
     </section>

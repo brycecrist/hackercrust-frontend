@@ -70,7 +70,6 @@
 .storyUrl {
     font-size: 0.6em;
     color: gray;
-    margin-bottom: 1em;
 }
 
 .storyDetailLink {
@@ -81,11 +80,12 @@
     text-decoration: none;
     width: 100%;
     text-align: left;
+    margin-left: 1em;
 }
 
 .thumbnailContainer {
-    min-width: 110px;
-    min-height: 110px;
+    min-width: 100px;
+    min-height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
