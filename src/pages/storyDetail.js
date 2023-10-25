@@ -1,33 +1,49 @@
 import {Link, useLocation} from "react-router-dom";
 import {ellipsis} from "../utils/strings";
 import {Header} from "../components/header";
-import {Divider} from "@mui/material";
+import {CircularProgress, Divider} from "@mui/material";
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import './styles/storyDetail.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useEffect, useState} from "react";
 import {getComments} from "../api/apiUtil";
+import {Comment} from "../components/comment";
 
 export const StoryDetail = () => {
   const location = useLocation()
   const {story, filters, image} = location.state
   const [comments, setComments] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     (async () => {
+      setLoading(true)
+
       const fetchComments = async () => {
         console.log("Fetching comments...")
         if (story.kids && story.kids.length > 0) {
           const commentsResponse = await getComments(story.kids)
-          console.log(commentsResponse)
+          setComments(commentsResponse.comments)
         }
       }
 
       await fetchComments()
+      setLoading(false)
     })()
   }, [])
 
-  console.log(comments)
+
+  const commentsToDisplay = comments ? comments.map(
+    (comment) => {
+      if (comment.text)
+        return <Comment key={comment.id} comment={comment}></Comment>
+    }) : []
+
+  const afterLoad = <div id="commentsSection">
+                      {commentsToDisplay}
+                    </div>
+
+  const load = <CircularProgress id="loadingAnimation" />
 
   let thumbnail
   if (image)
@@ -52,10 +68,7 @@ export const StoryDetail = () => {
         {thumbnail}
         <div id="commentsContainer">
           <Divider id="commentsDivider">Comments</Divider>
-          <div id="commentsSection">
-            <EngineeringIcon fontSize="large"/>
-            Under Construction
-          </div>
+          {loading ? load : afterLoad }
         </div>
       </div>
     </section>

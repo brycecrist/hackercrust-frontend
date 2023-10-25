@@ -25,20 +25,21 @@
 }
 
 #commentsContainer {
-    margin-bottom: 10em;
     width: 100%;
+    margin-bottom: 1em;
 }
 
 #commentsDivider span {
     font-size: 0.75em;
     color: gray;
     font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 #commentsSection {
     display: flex;
     flex-direction: column;
-    margin-top: 5em;
     justify-content: center;
     align-items: center;
 }

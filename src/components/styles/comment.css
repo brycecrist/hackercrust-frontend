@@ -1,0 +1,20 @@
+.comment {
+    width: 90%;
+}
+
+.commentAuthor {
+    font-size: 0.75em;
+    color: gray;
+    text-align: left;
+}
+
+.commentText {
+    font-size: 0.8em;
+    text-align: left;
+}
+
+blockquote {
+    border-left: 2px solid gray;
+    padding: 0.5em;
+    margin-left: 0;
+}
