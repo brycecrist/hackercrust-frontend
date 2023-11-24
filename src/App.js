@@ -15,42 +15,44 @@ import {useLocation} from "react-router-dom";
 const App = () => {
   const [storyIds, setStoryIds] = useState([])
   const [stories, setStories] = useState([])
-  const [filters, setFilters] = useState({page: 1, amount: 20, increaseBy: 20})
   const [loading, setLoading] = useState(false)
+  // YOu have to have this silly
+  const [storyFilters, setStoryFilters] = useState({ page: 1, amount: 20, increaseBy: 20 })
 
   const location = useLocation()
-  if (location.state) {
-    const {newFilters} = location.state
-    if (filters !== newFilters)
-      setFilters(newFilters)
-  }
+  const { filters } = location.state || {}
+
+  if ((filters && storyFilters) && (filters !== storyFilters))
+    setStoryFilters(filters)
+
 
   useEffect(() => {
     (async () => {
       setLoading(true)
 
       const fetchStoryIds = async () => await getTopStories()
-      const fetchStories = async () => await getNumberOfStories(filters)
+      const fetchStories = async () => await getNumberOfStories(storyFilters)
 
       const storyIds = await fetchStoryIds()
       if (storyIds)
         setStoryIds(storyIds)
-      const stories = await fetchStories()
-      if (stories)
-        setStories(stories)
+      if (storyFilters)
+        setStories(await fetchStories())
 
       setLoading(false)
     })()
-  }, [filters])
+  }, [storyFilters])
 
-  // If no stories due to server being down, give empty list
+  // If no stories due to server being down, give empty list/*
   const storiesToDisplay = stories ? stories.map(
-    (story, index) => <Story key={story.id} story={story} filters={filters} index={index}></Story>) : []
+    (story, index) => <Story key={story.id} story={story} filters={storyFilters} index={index}></Story>) : []
 
-  const afterLoad =
+  const noStories = <div id="noStories" hidden={stories.length > 0}>500! Oh No!<br/> No stories to be found here... <br/>try again later :(</div>
+
+  const afterLoad = stories.length > 0 ?
     <section id="Stories">
       {storiesToDisplay}
-    </section>
+    </section> : noStories
 
   const load = <CircularProgress id="loadingAnimation" />
 
@@ -58,14 +60,13 @@ const App = () => {
     <main id="App">
       <Header/>
       <div id="statement">
-        <sub>
-          A redesign of the Hackernews client. I love the site, but dislike the interface, so I've opted to make my own.
-          Forgive me for any bugs and/or the general lack of content.
-        </sub>
+        <sub>A <a href="https://news.ycombinator.com/">Hacker News</a> client based in the Rocky Mountains</sub>
         <sub id="version">Bruce Crust | 2023 | v{packageJson.version}</sub>
       </div>
       {loading ? load : afterLoad }
-      <Pagination filters={filters} setFilters={setFilters} maxStoryAmount={storyIds.length} isLoading={loading}/>
+      {stories.length > 0 ?
+        <Pagination filters={storyFilters} maxStoryAmount={storyIds.length} isLoading={loading}/> :
+        <div></div>}
     </main>
   )
 }

@@ -3,7 +3,7 @@ import './styles/pagination.css'
 import {useState} from "react";
 import {Link} from "react-router-dom";
 
-export const Pagination = ({filters, setFilters, maxStoryAmount, isLoading}) => {
+export const Pagination = ({filters, maxStoryAmount, isLoading}) => {
   const [hideNextButton, setHideNextButton] = useState(false)
   const [hidePreviousButton, setHidePreviousButton] = useState(false)
 
@@ -44,10 +44,10 @@ export const Pagination = ({filters, setFilters, maxStoryAmount, isLoading}) => 
 
   return(
     <div id="paginationContainer">
-      <Link to={`/stories/${previousState.page}`} state={{newFilters: previousState}} className="storyDetailLink">
+      <Link to={`/stories/${previousState.page}`} state={{filters: previousState}} className="storyDetailLink">
         <Button variant="outlined" color="primary" id="previousButton" disabled={hidePreviousButton}>Previous</Button>
       </Link>
-      <Link to={`/stories/${nextState.page}`} state={{newFilters: nextState}} className="storyDetailLink">
+      <Link to={`/stories/${nextState.page}`} state={{filters: nextState}} className="storyDetailLink">
         <Button variant="outlined" color="primary" id="nextButton" disabled={hideNextButton}>Next</Button>
       </Link>
     </div>

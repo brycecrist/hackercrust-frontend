@@ -10,6 +10,10 @@
   width: 60%;
 }
 
+#noStories {
+  margin: 3em;
+}
+
 #loadingAnimation {
   margin: 10em;
 }

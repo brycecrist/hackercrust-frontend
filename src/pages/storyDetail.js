@@ -13,13 +13,17 @@ export const StoryDetail = () => {
   const [comments, setComments] = useState([])
   const [storyLoading, setStoryLoading] = useState(false)
   const [commentLoading, setCommentLoading] = useState(false)
-  const [story, setStory] = useState({})
 
   const location = useLocation()
-  const { state } = location.state || {}
-  let { storyFromState, filters } = state || {}
+  console.log(`LOCATION: `)
+  console.log(location.state)
+  let { story, filters } = location.state || {}
 
-  let retrievedState = !!state
+  console.log("BEGINNING")
+  console.log(story)
+  console.log(filters)
+
+  let retrievedState = !!story
 
   const [searchParams] = useSearchParams()
 
@@ -36,12 +40,12 @@ export const StoryDetail = () => {
         setStoryLoading(true)
 
         const details = await getStoryDetails()
-        setStory(details.story)
+        console.log(details.filters)
+        story = details.story
         filters = details.filters
+        console.log(filters)
 
         retrievedState = true
-      } else {
-        setStory(storyFromState)
       }
 
       setStoryLoading(false)
@@ -75,23 +79,23 @@ export const StoryDetail = () => {
 
   const load = <CircularProgress id="loadingAnimation" />
 
-  let thumbnail
-  if (story && story.preview)
-    thumbnail = <img className="storyDetailImage" alt={story.title} src={story.preview.images[0]} />
-  else
-    thumbnail = <div className="noStoryDetailImage"><p>Preview unavailable</p></div>
+  let thumbnail = (story && story.preview) ?
+    <img className="storyDetailImage" alt={story.title} src={story.preview.images[0]} /> :
+    <div></div>
 
   const storyUrl = story ? story.url : ""
+
+  console.log(filters)
 
   const storyDetailInformation =
     <div id="storyDetailInformationContainer">
       <div id="textContainer">
-        <Link to={`/stories/${filters ? filters.page : 1}`}>
+        <Link id="backButtonContainer" to={`/stories/${filters ? filters.page : 1}`} state={{filters: filters}}>
           <ArrowBackIcon id="backButton" />
         </Link>
         <div className="storyDetailTitleContainer">
           <a className="storyDetailTitle" href={storyUrl}>{story ? story.title : ""}</a>
-          <a className="storyDetailUrl" href={storyUrl}>({ellipsis(storyUrl)})</a>
+          <a className="storyDetailUrl" href={storyUrl}>{story.url ? `(${ellipsis(storyUrl)})` : ""}</a>
         </div>
       </div>
       {thumbnail}
