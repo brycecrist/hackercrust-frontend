@@ -44,6 +44,8 @@ export const Story = ({story, filters, index}) => {
             <p className="points"><StraightIcon style={{color: "orange", fontSize: "16px"}}/>{story.score} points</p>
             <p className="author">by {story.by}</p>
             <p>on {convertedDateTime.toLocaleDateString()}</p>
+          </div>
+          <div className="commentContainer">
             <Link to={`/storyDetails?page=${filters.page}&id=${story.id}`}
                   state={{story: story, filters: filters, image: story.preview ? story.preview.images[0] : ""}}
                   className="comments">Comments: {story.descendants}</Link>

@@ -90,7 +90,7 @@ export const StoryDetail = () => {
   const storyDetailInformation =
     <div id="storyDetailInformationContainer">
       <div id="textContainer">
-        <Link to={`/stories/${filters ? filters.page : 1}`} state={{filters: filters}}>
+        <Link id="backButtonContainer" to={`/stories/${filters ? filters.page : 1}`} state={{filters: filters}}>
           <ArrowBackIcon id="backButton" />
         </Link>
         <div className="storyDetailTitleContainer">

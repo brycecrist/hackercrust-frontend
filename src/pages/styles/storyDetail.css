@@ -14,6 +14,7 @@
     background-color: #FAFAFA;
     justify-content: center;
     align-items: center;
+    margin-bottom: 3em;
 }
 
 #textContainer {
@@ -26,7 +27,7 @@
 
 #commentsContainer {
     width: 100%;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 
 #commentsDivider span {
@@ -49,7 +50,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 80%;
+    margin-right: 10%;
 }
 
 
@@ -61,6 +63,13 @@
 .storyDetailUrl {
     font-size: 0.75em;
     margin-bottom: 1em;
+}
+
+#backButtonContainer {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #backButton {
@@ -89,6 +98,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 100%;
+    margin-top: 1em;
 }
 
 @media screen and (max-width: 480px) {
@@ -113,19 +124,14 @@
         min-width: 100%;
     }
 
-    #textContainer a {
-        min-width: 35%;
-        margin-left: -3em;
-    }
-
     .storyDetailTitle {
         color: #333333;
         text-decoration: none;
     }
 
     .storyDetailTitleContainer {
-        margin-left: -1em;
-        max-width: 80%;
+        margin-left: 1em;
+        margin-right: 1em;
     }
 
     .storyDetailUrl {

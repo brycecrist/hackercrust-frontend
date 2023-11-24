@@ -9,8 +9,8 @@
 }
 
 .storyImage, .noStoryImage {
-    height: 75px;
-    width: 75px;
+    height: 90px;
+    width: 90px;
     margin: 0.25em;
 }
 
@@ -33,7 +33,7 @@
 .storyInformationContainer {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    justify-content: left;
 }
 
 .storyInformationContainer p, .storyInformationContainer a {
@@ -70,6 +70,7 @@
 .storyUrl {
     font-size: 0.6em;
     color: gray;
+    margin-bottom: 0.5em;
 }
 
 .storyDetailLink {
@@ -111,6 +112,10 @@
     flex-direction: row;
 }
 
+.commentContainer {
+    margin-bottom: 0.25em;
+}
+
 @media screen and (max-width: 480px) {
     .story {
         display: flex;
@@ -119,7 +124,6 @@
         align-items: center;
         box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
         background-color: white;
-        max-height: 10em;
     }
 
     .storyDetailLink {
@@ -128,8 +132,7 @@
     }
 
     .storyUrl {
-        font-size: 0.75em;
-        white-space: nowrap;
+        display: none;
     }
 
     .storyTitle {
@@ -143,8 +146,12 @@
     .storyInformationContainer {
         display: flex;
         justify-content: left;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
+    }
+
+    .commentContainer {
+        display: none;
     }
 
     .storyAuthorContainer {

@@ -60,7 +60,7 @@ const App = () => {
     <main id="App">
       <Header/>
       <div id="statement">
-        <sub>A Hacker News client developed somewhere in the Rocky Mountains</sub>
+        <sub>A <a href="https://news.ycombinator.com/">Hacker News</a> client based in the Rocky Mountains</sub>
         <sub id="version">Bruce Crust | 2023 | v{packageJson.version}</sub>
       </div>
       {loading ? load : afterLoad }
