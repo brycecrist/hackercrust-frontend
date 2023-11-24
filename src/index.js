@@ -12,7 +12,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/stories/:pageNumber",
-    element: <Navigate to="/stories/1" replace />
+    element: <App />
   },
   {
     path: "/storyDetails",
