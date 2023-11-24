@@ -47,7 +47,7 @@ const App = () => {
   const storiesToDisplay = stories ? stories.map(
     (story, index) => <Story key={story.id} story={story} filters={storyFilters} index={index}></Story>) : []
 
-  const noStories = <div id="noStories">500! Oh No!<br/> No stories to be found here... <br/>try again later :(</div>
+  const noStories = <div id="noStories" hidden={stories.length > 0}>500! Oh No!<br/> No stories to be found here... <br/>try again later :(</div>
 
   const afterLoad = stories.length > 0 ?
     <section id="Stories">
