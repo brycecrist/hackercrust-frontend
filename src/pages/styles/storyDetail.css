@@ -54,7 +54,6 @@
 
 
 .storyDetailTitle {
-    margin-top: 1em;
     color: #333333;
     text-decoration: none;
 }
@@ -65,7 +64,7 @@
 }
 
 #backButton {
-    margin-top: 1em;
+    margin: 1em;
 }
 
 
@@ -122,7 +121,6 @@
     .storyDetailTitle {
         color: #333333;
         text-decoration: none;
-        margin-top: 1em;
     }
 
     .storyDetailTitleContainer {
