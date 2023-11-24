@@ -1,4 +1,4 @@
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useSearchParams} from "react-router-dom";
 import {ellipsis} from "../utils/strings";
 import {Header} from "../components/header";
 import {CircularProgress, Divider} from "@mui/material";
@@ -6,32 +6,62 @@ import EngineeringIcon from '@mui/icons-material/Engineering';
 import './styles/storyDetail.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useEffect, useState} from "react";
-import {getComments} from "../api/apiUtil";
+import {getComments, getStory} from "../api/apiUtil";
 import {Comment} from "../components/comment";
 
 export const StoryDetail = () => {
-  const location = useLocation()
-  const {story, filters, image} = location.state
   const [comments, setComments] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [storyLoading, setStoryLoading] = useState(false)
+  const [commentLoading, setCommentLoading] = useState(false)
+  const [story, setStory] = useState({})
+
+  const location = useLocation()
+  const { state } = location.state || {}
+  let { storyFromState, filters } = state || {}
+
+  let retrievedState = !!state
+
+  const [searchParams] = useSearchParams()
 
   useEffect(() => {
     (async () => {
-      setLoading(true)
+      setStoryLoading(true)
 
+      const getStoryDetails = async () => {
+        const story = await getStory(searchParams.get("id"))
+        return {story: story, filters: {page: searchParams.get("page")}, image: null}
+      }
+
+      if (!retrievedState) {
+        setStoryLoading(true)
+
+        const details = await getStoryDetails()
+        setStory(details.story)
+        filters = details.filters
+
+        retrievedState = true
+      } else {
+        setStory(storyFromState)
+      }
+
+      setStoryLoading(false)
+    })()
+  }, [])
+
+  useEffect(() => {
+    (async () => {
+      setCommentLoading(true)
       const fetchComments = async () => {
-        console.log("Fetching comments...")
-        if (story.kids && story.kids.length > 0) {
+        if (story && story.kids) {
           const commentsResponse = await getComments(story.kids)
           setComments(commentsResponse.comments)
         }
       }
 
       await fetchComments()
-      setLoading(false)
+      setCommentLoading(false)
     })()
-  }, [])
-
+  }, [story])
 
   const commentsToDisplay = comments ? comments.map(
     (comment) => {
@@ -46,29 +76,36 @@ export const StoryDetail = () => {
   const load = <CircularProgress id="loadingAnimation" />
 
   let thumbnail
-  if (image)
-    thumbnail = <img className="storyDetailImage" alt={story.title} src={image} />
+  if (story && story.preview)
+    thumbnail = <img className="storyDetailImage" alt={story.title} src={story.preview.images[0]} />
   else
     thumbnail = <div className="noStoryDetailImage"><p>Preview unavailable</p></div>
 
-  // Comment for deployment
+  const storyUrl = story ? story.url : ""
+
+  const storyDetailInformation =
+    <div id="storyDetailInformationContainer">
+      <div id="textContainer">
+        <Link to={`/stories/${filters ? filters.page : 1}`}>
+          <ArrowBackIcon id="backButton" />
+        </Link>
+        <div className="storyDetailTitleContainer">
+          <a className="storyDetailTitle" href={storyUrl}>{story ? story.title : ""}</a>
+          <a className="storyDetailUrl" href={storyUrl}>({ellipsis(storyUrl)})</a>
+        </div>
+      </div>
+      {thumbnail}
+    </div>
+
   return (
     <section id="storyDetailContainer">
       <Header></Header>
       <div id="subDetailContainer">
-        <div id="textContainer">
-          <Link to={`/stories/${filters.page}`}>
-            <ArrowBackIcon id="backButton" />
-          </Link>
-          <div className="storyDetailTitleContainer">
-            <a className="storyDetailTitle" href={story.url}>{story.title}</a>
-            <a className="storyDetailUrl" href={story.url}>({ellipsis(story.url)})</a>
-          </div>
-        </div>
-        {thumbnail}
+        {storyLoading ? load : storyDetailInformation}
+
         <div id="commentsContainer">
           <Divider id="commentsDivider">Comments</Divider>
-          {loading ? load : afterLoad }
+          {commentLoading ? load : afterLoad }
         </div>
       </div>
     </section>

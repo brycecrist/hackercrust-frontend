@@ -3,7 +3,6 @@ import parse from 'html-react-parser'
 import remarkGfm from "remark-gfm";
 
 export const Comment = ({comment}) => {
-  console.log(comment.by)
   const parsedText = parse(comment.text)
   const textToDisplay = typeof parsedText !== "string" ? parsedText[0] : parsedText
 

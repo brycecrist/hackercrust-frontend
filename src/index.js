@@ -12,10 +12,10 @@ const router = createBrowserRouter([
   },
   {
     path: "/stories/:pageNumber",
-    element: <App />
+    element: <Navigate to="/stories/1" replace />
   },
   {
-    path: "/stories/:pageNumber/storyDetail/:storyId",
+    path: "/storyDetails",
     element: <StoryDetail />
   },
   {
