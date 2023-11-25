@@ -1,18 +1,22 @@
 .story {
-    margin: 0.25em;
+    margin: 0.25em 0 0.25em 0;
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     background-color: #FAFAFA;
-    width: 100%;
+    width: 98%;
+    min-height: 7em;
+    max-height: 7em;
 }
 
 .mainContentContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-height: 7em;
+    max-height: 7em;
 }
 
 .horizontalDivider {
@@ -20,8 +24,8 @@
 }
 
 .storyImage, .noStoryImage {
-    height: 75px;
-    width: 75px;
+    height: 70px;
+    width: 70px;
 }
 
 .noStoryImage {
@@ -38,17 +42,18 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-height: 7em;
+    max-height: 7em;
 }
 
 .storyInformationContainer {
     display: flex;
     flex-direction: row;
     justify-content: left;
-
+    height: 2.5em;
 }
 
 .storyInformationContainer p, .storyInformationContainer a {
-    margin: 0.25em;
     font-size: 0.75em;
     color: gray;
 }
@@ -77,14 +82,14 @@
 .storyTitle {
     text-align: left;
     font-size: 1.1rem;
-    margin-right: 1em;
-    margin-left: 0.5em;
 }
 
 .storyUrl {
     font-size: 0.6em;
     color: gray;
-    width: 12em;
+    width: 10em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 
 .storyDetailLink {
@@ -93,20 +98,19 @@
     flex-direction: row;
     color: #333333;
     text-decoration: none;
-    max-width: 100%;
     text-align: left;
     margin-left: 0.5em;
-    min-height: 70px;
-    max-height: 70px;
+    min-height: 5.5em;
 }
 
 .thumbnailContainer {
-    min-width: 75px;
-    min-height: 75px;
+    min-height: 70px;
+    width: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-right: 0.5em;
 }
 
 .storyIndex {
@@ -127,11 +131,21 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin-left: 0.5em;
+}
+
+.author {
+    margin-left: 0.5em!important;
+}
+
+.storyAuthorContainer p {
+    margin: 0
 }
 
 .commentContainer {
-    margin-bottom: 0.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5em;
 }
 
 @media screen and (max-width: 480px) {
@@ -150,11 +164,6 @@
         width: 100px;
     }
 
-    .storyDetailLink {
-        min-height: 5em;
-        max-height: 5em;
-    }
-
     .storyUrl {
         display: none;
     }
@@ -164,6 +173,7 @@
         justify-content: left;
         flex-direction: column;
         align-items: center;
+        margin-top: 0.25em;
     }
 
     .commentContainer {
