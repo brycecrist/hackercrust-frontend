@@ -14,10 +14,10 @@ export const Story = ({story, filters, index}) => {
     if (preview.images.length > 0) {
       image = <img className="storyImage" alt={story.preview.description} src={story.preview.images[0]}/>
     } else {
-      image = <NoStoryImage/>
+      image = <NoStoryImage className="storyImage"/>
     }
   } else {
-    image = <NoStoryImage/>
+    image = <NoStoryImage className="storyImage"/>
   }
 
   const indexToDisplay = filters.page > 1 ? index + filters.amount - filters.increaseBy : index
@@ -39,7 +39,7 @@ export const Story = ({story, filters, index}) => {
                   state={{story: story, filters: filters, image: story.preview ? story.preview.images[0] : ""}} className="storyDetailLink">
               <div className="storyTitleContainer">
                 <div className="storyHeaderContainer">
-                  <p className="storyTitle">{story.title}</p>
+                  <p className="storyTitle">{ellipsis(story.title, 100)}</p>
                 </div>
               </div>
             </Link>

@@ -84,6 +84,7 @@
 .storyUrl {
     font-size: 0.6em;
     color: gray;
+    width: 12em;
 }
 
 .storyDetailLink {
@@ -92,7 +93,7 @@
     flex-direction: row;
     color: #333333;
     text-decoration: none;
-    width: 100%;
+    max-width: 100%;
     text-align: left;
     margin-left: 0.5em;
     min-height: 70px;

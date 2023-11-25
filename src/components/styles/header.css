@@ -4,6 +4,7 @@ header {
     top: 0;
     position: sticky;
     margin-left: 2em;
+    width: 100%;
 }
 
 header p {
