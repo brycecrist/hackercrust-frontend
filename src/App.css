@@ -1,13 +1,14 @@
-#App {
+#topLevelContainer {
   text-align: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: -3em;
 }
 
 #Stories {
-  width: 60%;
+  width: 50%;
 }
 
 #noStories {
@@ -35,5 +36,9 @@
 @media screen and (max-width: 480px) {
   #Stories {
     width: 100%;
+  }
+
+  #topLevelContainer {
+    margin-top: 0.25em;
   }
 }

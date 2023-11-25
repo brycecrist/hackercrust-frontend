@@ -59,14 +59,16 @@ const App = () => {
   return (
     <main id="App">
       <Header/>
-      <div id="statement">
-        <sub>A <a href="https://news.ycombinator.com/">Hacker News</a> client based in the Rocky Mountains</sub>
-        <sub id="version">Bruce Crust | 2023 | v{packageJson.version}</sub>
+      <div id="topLevelContainer">
+        <div id="statement">
+          <sub>A crusty <a href="https://news.ycombinator.com/">Hacker News</a> client based in the Rockies</sub>
+          <sub id="version">Bruce Crust | 2023 | v{packageJson.version}</sub>
+        </div>
+        {loading ? load : afterLoad }
+        {stories.length > 0 ?
+          <Pagination filters={storyFilters} maxStoryAmount={storyIds.length} isLoading={loading}/> :
+          <div></div>}
       </div>
-      {loading ? load : afterLoad }
-      {stories.length > 0 ?
-        <Pagination filters={storyFilters} maxStoryAmount={storyIds.length} isLoading={loading}/> :
-        <div></div>}
     </main>
   )
 }

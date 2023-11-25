@@ -1,18 +1,13 @@
 header {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    width: 60%;
-    background-color: #333333;
-    margin-bottom: 1rem;
-}
-
-header svg {
-    margin-left: 1em;
+    top: 0;
+    position: sticky;
+    margin-left: 2em;
 }
 
 header p {
-    margin-left: 0.5em;
+    margin: 0 0.25em;
     color: white;
 }
 
@@ -21,13 +16,22 @@ header p {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: #333333;
+    padding: 1em;
+    border-radius: 0 0 0.5em 0.5em;
 }
-
 
 @media screen and (max-width: 480px) {
     header {
         width: 100%;
-        position: sticky;
-        top: 0;
+        height: 2em;
+        margin: 0;
+    }
+
+    #titleContainer {
+        border-radius: 0;
+        width: 100%;
+        display: flex;
+        justify-content: left;
     }
 }

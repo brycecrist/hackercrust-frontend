@@ -15,13 +15,7 @@ export const StoryDetail = () => {
   const [commentLoading, setCommentLoading] = useState(false)
 
   const location = useLocation()
-  console.log(`LOCATION: `)
-  console.log(location.state)
   let { story, filters } = location.state || {}
-
-  console.log("BEGINNING")
-  console.log(story)
-  console.log(filters)
 
   let retrievedState = !!story
 
@@ -40,10 +34,8 @@ export const StoryDetail = () => {
         setStoryLoading(true)
 
         const details = await getStoryDetails()
-        console.log(details.filters)
         story = details.story
         filters = details.filters
-        console.log(filters)
 
         retrievedState = true
       }
@@ -84,8 +76,6 @@ export const StoryDetail = () => {
     <div></div>
 
   const storyUrl = story ? story.url : ""
-
-  console.log(filters)
 
   const storyDetailInformation =
     <div id="storyDetailInformationContainer">
