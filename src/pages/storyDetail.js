@@ -9,6 +9,7 @@ import {useEffect, useState} from "react";
 import {getComments, getStory} from "../api/apiUtil";
 import {Comment} from "../components/comment";
 import noCommentsImage from "../images/webdesign_icons_4.png"
+import { ReactComponent as NoStoryImage } from "../images/browser_icon_2.svg"
 
 export const StoryDetail = () => {
   const [comments, setComments] = useState([])
@@ -77,9 +78,15 @@ export const StoryDetail = () => {
 
   const load = <CircularProgress id="loadingAnimation" />
 
-  let thumbnail = (story && story.preview) ?
-    <img className="storyDetailImage" alt={story.title} src={story.preview.images[0]} /> :
-    <div></div>
+  let thumbnail
+  let preview = story.preview ? story.preview : null
+  const hasImage = preview && preview.images && preview.images.length > 0
+
+  if (hasImage) {
+    thumbnail = <img className="storyImage" alt={story.preview.description} src={story.preview.images[0]}/>
+  } else {
+    thumbnail = <NoStoryImage className="storyImage"/>
+  }
 
   const storyUrl = story ? story.url : ""
 

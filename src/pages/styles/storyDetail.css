@@ -68,6 +68,7 @@
 .storyDetailTitle {
     color: #333333;
     text-decoration: none;
+    margin-top: 0.5em;
 }
 
 .storyDetailUrl {
