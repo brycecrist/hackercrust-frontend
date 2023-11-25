@@ -9,7 +9,7 @@ body {
   background-color: #fcf9f5;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body p, body a, body sub {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  color: #555555;
 }

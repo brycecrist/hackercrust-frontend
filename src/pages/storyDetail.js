@@ -8,6 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useEffect, useState} from "react";
 import {getComments, getStory} from "../api/apiUtil";
 import {Comment} from "../components/comment";
+import noCommentsImage from "../images/webdesign_icons_4.png"
 
 export const StoryDetail = () => {
   const [comments, setComments] = useState([])
@@ -65,8 +66,13 @@ export const StoryDetail = () => {
         return <Comment key={comment.id} comment={comment}></Comment>
     }) : []
 
-  const afterLoad = <div id="commentsSection">
+  const afterLoad = comments.length > 0 ?
+                    <div id="commentsSection">
                       {commentsToDisplay}
+                    </div> :
+                    <div id="commentsSection">
+                      <p id="noCommentsText">Looks like no one's here!</p>
+                      <img id="noCommentsImage" src={noCommentsImage} alt="No Comments Image"/>
                     </div>
 
   const load = <CircularProgress id="loadingAnimation" />
