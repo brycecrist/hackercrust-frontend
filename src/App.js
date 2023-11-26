@@ -32,10 +32,7 @@ const App = () => {
     (async () => {
       setLoading(true)
 
-      console.log(storiesAreInCache())
-
       if (storiesAreInCache()) {
-        console.log("GOT IT BYE!")
         setLoading(false)
         return
       }
@@ -44,12 +41,12 @@ const App = () => {
       const fetchStories = async () => await getNumberOfStories(storyFilters)
 
       const storyIds = await fetchStoryIds()
-      if (storyIds)
+      if (storyIds) {
         setStoryIds(storyIds)
+        cachedStories.maxStoryAmount = storyIds.length
+      }
       if (storyFilters) {
-        console.log("Fetching Stories")
         setStories(await fetchStories())
-        console.log(stories)
       }
 
       setLoading(false)
@@ -58,7 +55,6 @@ const App = () => {
 
   useEffect(() => {
     if (!cachedStories.hasOwnProperty(storyFilters.page)) {
-      console.log("Hola")
       if (stories.length > 0) {
         const entry = {
           page: storyFilters.page,
@@ -66,7 +62,6 @@ const App = () => {
         }
 
         cachedStories.viewed.push(entry)
-        console.log(cachedStories.viewed)
       }
     }
   }, [stories])
@@ -74,10 +69,7 @@ const App = () => {
   const storiesAreInCache = () => {
     let foundPage = false
     cachedStories.viewed.forEach(i => {
-      console.log("I!")
-      console.log(i)
       if (i.page === storyFilters.page) {
-        console.log("FOUND IT!")
         setStories(i.stories)
         foundPage = true
       }
@@ -109,7 +101,7 @@ const App = () => {
         </div>
         {loading ? load : afterLoad }
         {stories.length > 0 ?
-          <Pagination filters={storyFilters} maxStoryAmount={storyIds.length} isLoading={loading}/> :
+          <Pagination filters={storyFilters} maxStoryAmount={cachedStories.maxStoryAmount} isLoading={loading}/> :
           <div></div>}
       </div>
     </main>
