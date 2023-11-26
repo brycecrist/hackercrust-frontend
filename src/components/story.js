@@ -43,8 +43,8 @@ export const Story = ({story, filters, index}) => {
             <div className="storyInformationContainer">
               <div className="storyAuthorContainer">
                 <p className="points"><StraightIcon style={{color: "orange", fontSize: "16px"}}/>{story.score}</p>
-                <p className="author">{ellipsis(story.by, 10)}</p>
-                <p>on {convertedDateTime.toLocaleDateString()}</p>
+                <p className="author">by {ellipsis(story.by, 10)}</p>
+                <p>posted on {convertedDateTime.toLocaleDateString()}</p>
               </div>
               <div className="commentContainer">
                 <Link to={`/storyDetails?page=${filters.page}&id=${story.id}`}
