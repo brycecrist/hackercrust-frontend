@@ -11,6 +11,8 @@ import {Pagination} from "./components/pagination";
 import {CircularProgress} from "@mui/material";
 import packageJson from "../package.json"
 import {useLocation} from "react-router-dom";
+import * as data from "./utils/data";
+import {cachedStories} from "./utils/data";
 
 const App = () => {
   const [storyIds, setStoryIds] = useState([])
@@ -30,18 +32,51 @@ const App = () => {
     (async () => {
       setLoading(true)
 
+      if (storiesAreInCache()) {
+        setLoading(false)
+        return
+      }
+
       const fetchStoryIds = async () => await getTopStories()
       const fetchStories = async () => await getNumberOfStories(storyFilters)
 
       const storyIds = await fetchStoryIds()
-      if (storyIds)
+      if (storyIds) {
         setStoryIds(storyIds)
-      if (storyFilters)
+        cachedStories.maxStoryAmount = storyIds.length
+      }
+      if (storyFilters) {
         setStories(await fetchStories())
+      }
 
       setLoading(false)
     })()
   }, [storyFilters])
+
+  useEffect(() => {
+    if (!cachedStories.hasOwnProperty(storyFilters.page)) {
+      if (stories.length > 0) {
+        const entry = {
+          page: storyFilters.page,
+          stories: stories
+        }
+
+        cachedStories.viewed.push(entry)
+      }
+    }
+  }, [stories])
+
+  const storiesAreInCache = () => {
+    let foundPage = false
+    cachedStories.viewed.forEach(i => {
+      if (i.page === storyFilters.page) {
+        setStories(i.stories)
+        foundPage = true
+      }
+    })
+
+    return foundPage
+  }
 
   // If no stories due to server being down, give empty list/*
   const storiesToDisplay = stories ? stories.map(
@@ -66,7 +101,7 @@ const App = () => {
         </div>
         {loading ? load : afterLoad }
         {stories.length > 0 ?
-          <Pagination filters={storyFilters} maxStoryAmount={storyIds.length} isLoading={loading}/> :
+          <Pagination filters={storyFilters} maxStoryAmount={cachedStories.maxStoryAmount} isLoading={loading}/> :
           <div></div>}
       </div>
     </main>
