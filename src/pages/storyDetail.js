@@ -13,13 +13,14 @@ import { ReactComponent as NoStoryImage } from "../images/browser_icon_2.svg"
 
 export const StoryDetail = () => {
   const [comments, setComments] = useState([])
+  const [story, setStory] = useState({})
   const [storyLoading, setStoryLoading] = useState(false)
   const [commentLoading, setCommentLoading] = useState(false)
 
   const location = useLocation()
-  let { story, filters } = location.state || {}
+  let { storyFromState, filters } = location.state || {}
 
-  let retrievedState = !!story
+  let retrievedState = !!storyFromState
 
   const [searchParams] = useSearchParams()
 
@@ -36,10 +37,12 @@ export const StoryDetail = () => {
         setStoryLoading(true)
 
         const details = await getStoryDetails()
-        story = details.story
+        setStory(details.story)
         filters = details.filters
 
         retrievedState = true
+      } else {
+        setStory(storyFromState)
       }
 
       setStoryLoading(false)
@@ -79,7 +82,7 @@ export const StoryDetail = () => {
   const load = <CircularProgress id="loadingAnimation" />
 
   let thumbnail
-  let preview = story.preview ? story.preview : null
+  let preview = story && story.preview ? story.preview : null
   const hasImage = preview && preview.images && preview.images.length > 0
 
   if (hasImage) {
@@ -88,7 +91,7 @@ export const StoryDetail = () => {
     thumbnail = <NoStoryImage className="storyImage"/>
   }
 
-  const storyUrl = story ? story.url : ""
+  const storyUrl = story && story ? story.url : ""
 
   const storyDetailInformation =
     <div id="storyDetailInformationContainer">
